@@ -6,3 +6,10 @@ extends:
   - tslint-modular/best-practices
   - tslint-modular/style
   - tslint-modular/node
+
+rules:
+  # Allow whitelisted implicit dependencies
+  no-implicit-dependencies:
+    - true
+    - - unist
+      - unified
