@@ -1,51 +1,75 @@
-Node.js TypeScript Template
-===========================
-This is a **template repo** for Node.js projects written in TypeScript. This template works for libraries and/or CLIs.
+# Table of Contents plugin for rehype
+A rehype plugin that adds a table of contents (TOC) to the page
+
+[![Cross-Platform Compatibility](https://jsdevtools.org/img/badges/os-badges.svg)](https://travis-ci.com/JS-DevTools/rehype-toc)
+[![Build Status](https://api.travis-ci.com/JS-DevTools/rehype-toc.svg?branch=master)](https://travis-ci.com/JS-DevTools/rehype-toc)
+
+[![Coverage Status](https://coveralls.io/repos/github/JS-DevTools/rehype-toc/badge.svg?branch=master)](https://coveralls.io/github/JS-DevTools/rehype-toc)
+[![Dependencies](https://david-dm.org/JS-DevTools/rehype-toc.svg)](https://david-dm.org/JS-DevTools/rehype-toc)
+
+[![npm](https://img.shields.io/npm/v/rehype-toc.svg)](https://www.npmjs.com/package/rehype-toc)
+[![License](https://img.shields.io/npm/l/rehype-toc.svg)](LICENSE)
 
 
 
-Step 1: Copy this repo
----------------------------------------------
-Create a new git repo and copy the contents of this repo into it.
+Example
+--------------------------
+
+```javascript
+import toc from "rehype-toc";
+
+// TODO: Add a usage example here
+```
 
 
 
-Step 2: Delete unneeded files
----------------------------------------------
-If you **don't** need a CLI, then:
-  - Delete the following files and directories:
-    - `bin`
-    - `src/cli`
-    - `test/specs/cli.spec.js`
-    - `test/utils/project-cli-name.js`
-  - Delete the following fields in `package.json`:
-    - `bin`
-    - `files.bin`
-    - `devDependencies.chai-exec`
-    - `dependencies.command-line-args`
+Installation
+--------------------------
+You can install `rehype-toc` via [npm](https://docs.npmjs.com/about-npm/).
+
+```bash
+npm install -g rehype-toc
+```
 
 
 
-Step 3: Replace placeholders
----------------------------------------------
-Replace all occurrences of the following placeholders in all files:
-
-|Placeholder                        |Description
-|:----------------------------------|:------------------------------------------------------------
-|`project-package-name`             |This is the name of the NPM package. It should also match the GitHub repo name. It should be kebab-cased.
-|`project-cli-name`                 |The name of the CLI program for this project, if any.
-|`projectExportName`                |The name of the library's default export, if any.  This should be a valid JavaScript identifier name.
-|`Friendly Project Name`            |This is the human friendly name of the project that is used in the ReadMe, descriptions, and docs pages
-|`This is the project description`  |A short, human friendly description of the project that is used in the ReadMe and package.json
+Usage
+--------------------------
+TODO: Document the library's API and CLI usage
 
 
 
-Step 4: TODOs
----------------------------------------------
-Find all "TODO" notes in the code and follow their instructions.
+Contributing
+--------------------------
+Contributions, enhancements, and bug-fixes are welcome!  [File an issue](https://github.com/JS-DevTools/rehype-toc/issues) on GitHub and [submit a pull request](https://github.com/JS-DevTools/rehype-toc/pulls).
+
+#### Building
+To build the project locally on your computer:
+
+1. __Clone this repo__<br>
+`git clone https://github.com/JS-DevTools/rehype-toc.git`
+
+2. __Install dependencies__<br>
+`npm install`
+
+3. __Build the code__<br>
+`npm run build`
+
+4. __Run the tests__<br>
+`npm test`
 
 
 
-Step 5: ReadMe
----------------------------------------------
-Delete this file and replace it with `README_md`.
+License
+--------------------------
+rehype-toc is 100% free and open-source, under the [MIT license](LICENSE). Use it however you want.
+
+
+
+Big Thanks To
+--------------------------
+Thanks to these awesome companies for their support of Open Source developers ❤
+
+[![Travis CI](https://jsdevtools.org/img/badges/travis-ci.svg)](https://travis-ci.com)
+[![SauceLabs](https://jsdevtools.org/img/badges/sauce-labs.svg)](https://saucelabs.com)
+[![Coveralls](https://jsdevtools.org/img/badges/coveralls.svg)](https://coveralls.io)

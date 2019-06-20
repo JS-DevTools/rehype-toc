@@ -1,11 +1,11 @@
-import { projectExportName } from "./project-package-name";
+import { toc } from "./rehype-toc";
 
 export { Options } from "./settings";
-export { projectExportName };
+export { toc };
 
-// Export `projectExportName` as the default export
+// Export `toc` as the default export
 // tslint:disable: no-default-export
-export default projectExportName;
+export default toc;
 
 
 // CommonJS default export hack

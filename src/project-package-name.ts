@@ -1,11 +1,11 @@
 import { Options, Settings } from "./settings";
 
 /**
- * This is the project description
+ * A rehype plugin that adds a table of contents (TOC) to the page
  *
  * @returns - The new version number
  */
-export function projectExportName(options?: Options): string {
+export function toc(options?: Options): string {
   let settings = new Settings(options);
 
   if (settings.greeting === "Goodbye") {
