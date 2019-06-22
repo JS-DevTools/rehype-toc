@@ -1,10 +1,6 @@
 import { Node } from "unist";
-import { HeadingNode, HtmlElementNode } from "./types";
-
-/**
- * The `tagName` property of HTML heading nodes
- */
-export const headingTagNames = ["h1", "h2", "h3", "h4", "h5", "h6"];
+import { Options } from "./options";
+import { HeadingNode, HeadingTagName, HtmlElementNode } from "./types";
 
 /**
  * Determines whether the given node is an HTML element.
@@ -18,8 +14,8 @@ export function isHtmlElementNode(node: Node): node is HtmlElementNode {
 }
 
 /**
- * Determines whether the given node is an HTML heading node
+ * Determines whether the given node is an HTML heading node, according to the specified options
  */
-export function isHeadingNode(node: Node): node is HeadingNode {
-  return isHtmlElementNode(node) && headingTagNames.includes(node.tagName);
+export function isHeadingNode(node: Node, options: Options): node is HeadingNode {
+  return isHtmlElementNode(node) && options.headings.includes(node.tagName as HeadingTagName);
 }

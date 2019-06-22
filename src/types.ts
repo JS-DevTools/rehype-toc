@@ -15,7 +15,7 @@ export interface HtmlElementNode extends Node {
     id?: string;
     class?: string;
   };
-  children?: Array<HtmlElementNode | TextNode>;
+  children?: Node[];
 }
 
 /**
@@ -34,10 +34,25 @@ export interface HeadingNode extends HtmlElementNode {
 }
 
 /**
- * A <ul> or <li> node that we create for the table of contents
+ * An HTML list node (i.e. <ol> or <ul>)
  */
-export interface TOCNode extends HtmlElementNode {
-  parent: TOCNode;
-  children: HtmlElementNode[];
-  level: number;
+export interface ListNode extends HtmlElementNode {
+  type: "element";
+  tagName: "ol" | "ul";
+  properties: {
+    class: string;
+  };
+  children: ListItemNode[];
+}
+
+/**
+ * An HTML list item node (i.e. <li>)
+ */
+export interface ListItemNode extends HtmlElementNode {
+  type: "element";
+  tagName: "li";
+  properties: {
+    class: string;
+  };
+  children: Array<HtmlElementNode | TextNode>;
 }
