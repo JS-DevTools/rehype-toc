@@ -12,8 +12,7 @@ export interface HtmlElementNode extends Node {
   type: "element";
   tagName: string;
   properties: {
-    id?: string;
-    class?: string;
+    [prop: string]: string | undefined;
   };
   children?: Node[];
 }
