@@ -1,3 +1,4 @@
+import { getInnerText } from "./get-inner-text";
 import { Options } from "./options";
 import { HeadingNode, ListItemNode, ListNode } from "./types";
 
@@ -61,6 +62,9 @@ export function createTOC(headings: HeadingNode[], options: Options): ListNode {
   return toc;
 }
 
+/**
+ * Creates an `<ol>` and `<li>` element for the given heading
+ */
 function createList(heading: HeadingNode | undefined, depth: number, options: Options): ListNode {
   let list: ListNode = {
     type: "element",
@@ -84,6 +88,9 @@ function createList(heading: HeadingNode | undefined, depth: number, options: Op
   return list;
 }
 
+/**
+ * Creates an `<li>` element for the given heading
+ */
 function createListItem(heading: HeadingNode, options: Options): ListItemNode {
   return {
     type: "element",
@@ -91,6 +98,21 @@ function createListItem(heading: HeadingNode, options: Options): ListItemNode {
     properties: {
       class: `${options.cssClasses.listItem} ${options.cssClasses.listItem}-${heading.tagName}`,
     },
-    children: [],
+    children: [
+      {
+        type: "element",
+        tagName: "a",
+        properties: {
+          href: `#${heading.properties.id || ""}`,
+          class: `${options.cssClasses.link} ${options.cssClasses.link}-${heading.tagName}`,
+        },
+        children: [
+          {
+            type: "text",
+            value: getInnerText(heading),
+          }
+        ]
+      }
+    ],
   };
 }
