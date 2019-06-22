@@ -1,7 +1,5 @@
 "use strict";
 
-const { expect } = require("chai");
-
 module.exports = compare;
 
 /**
