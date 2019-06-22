@@ -28,7 +28,7 @@ Installation
 You can install `rehype-toc` via [npm](https://docs.npmjs.com/about-npm/).
 
 ```bash
-npm install -g rehype-toc
+npm install rehype-toc
 ```
 
 
