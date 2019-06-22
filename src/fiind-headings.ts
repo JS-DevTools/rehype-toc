@@ -23,7 +23,7 @@ function findHeadingsRecursive(node: Node, headingNodes: HeadingNode[], options:
   if (node.children) {
     let parent = node as Parent;
     for (let child of parent.children) {
-      findHeadings(child, options);
+      findHeadingsRecursive(child, headingNodes, options);
     }
   }
 }
