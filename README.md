@@ -12,6 +12,17 @@ A rehype plugin that adds a table of contents (TOC) to the page
 
 
 
+Features
+--------------------------
+- Adds an `<ol>` list outlining all headings on the page
+- Combine with [rehype-slug](https://github.com/rehypejs/rehype-slug) to create links to each heading
+- Ignores headings outside of `<main>` if it exists
+- You can customize which headings are included (defaults to `<h1>` - `<h6>`)
+- You can customize the CSS classes on every TOC element
+- Hooks give you complete customization of the generated HTML
+
+
+
 Example
 --------------------------
 
