@@ -38,9 +38,6 @@ export interface HeadingNode extends HtmlElementNode {
 export interface ListNode extends HtmlElementNode {
   type: "element";
   tagName: "ol" | "ul";
-  properties: {
-    class: string;
-  };
   children: ListItemNode[];
 }
 
@@ -50,8 +47,5 @@ export interface ListNode extends HtmlElementNode {
 export interface ListItemNode extends HtmlElementNode {
   type: "element";
   tagName: "li";
-  properties: {
-    class: string;
-  };
-  children: Array<HtmlElementNode | TextNode>;
+  children: Node[];
 }

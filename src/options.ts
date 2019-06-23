@@ -78,11 +78,26 @@ export function applyDefaults(config: PartialOptions = {}): Options {
   return {
     headings: config.headings || ["h1", "h2", "h3", "h4", "h5", "h6"],
     cssClasses: {
-      toc: cssClasses.toc || "toc",
-      list: cssClasses.list || "toc-level",
-      listItem: cssClasses.listItem || "toc-item",
-      link: cssClasses.link || "toc-link",
+      toc: cssClasses.toc === undefined ? "toc" : cssClasses.toc,
+      list: cssClasses.list === undefined ? "toc-level" : cssClasses.list,
+      listItem: cssClasses.listItem === undefined ? "toc-item" : cssClasses.listItem,
+      link: cssClasses.link === undefined ? "toc-link" : cssClasses.link,
     },
     customizeTOC: config.customizeTOC || ((toc: Node) => toc),
   };
+}
+
+/**
+ * Builds a CSS class string from the given user-defined class name
+ */
+export function buildClass(name: string, suffix: string | number): string | undefined {
+  if (name) {
+    let cssClass = name;
+
+    if (suffix) {
+      cssClass += ` ${name}-${suffix}`;
+    }
+
+    return cssClass;
+  }
 }

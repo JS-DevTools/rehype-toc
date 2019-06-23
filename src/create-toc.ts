@@ -1,5 +1,5 @@
 import { getInnerText } from "./get-inner-text";
-import { Options } from "./options";
+import { buildClass, Options } from "./options";
 import { HeadingNode, ListItemNode, ListNode } from "./types";
 
 interface TocLevel {
@@ -80,7 +80,7 @@ function createList(heading: HeadingNode | undefined, depth: number, options: Op
     type: "element",
     tagName: "ol",
     properties: {
-      class: `${options.cssClasses.list} ${options.cssClasses.list}-${depth}`,
+      class: buildClass(options.cssClasses.list, depth),
     },
     children: [],
   };
@@ -90,9 +90,9 @@ function createList(heading: HeadingNode | undefined, depth: number, options: Op
     list.children.push(listItem);
   }
 
-  if (depth === 1) {
+  if (depth === 1 && options.cssClasses.toc) {
     // This is the top-level table of contents list
-    list.properties.class = options.cssClasses.toc + " " + list.properties.class;
+    list.properties.class = options.cssClasses.toc + " " + (list.properties.class || "");
   }
 
   return list;
@@ -106,14 +106,14 @@ function createListItem(heading: HeadingNode, options: Options): ListItemNode {
     type: "element",
     tagName: "li",
     properties: {
-      class: `${options.cssClasses.listItem} ${options.cssClasses.listItem}-${heading.tagName}`,
+      class: buildClass(options.cssClasses.listItem, heading.tagName),
     },
     children: [
       {
         type: "element",
         tagName: "a",
         properties: {
-          class: `${options.cssClasses.link} ${options.cssClasses.link}-${heading.tagName}`,
+          class: buildClass(options.cssClasses.link, heading.tagName),
           href: `#${heading.properties.id || ""}`,
         },
         children: [

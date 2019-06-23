@@ -1,6 +1,6 @@
 import { toc } from "./rehype-toc";
 
-export { Options } from "./options";
+export { Options, PartialOptions } from "./options";
 export * from "./types";
 export { toc };
 
