@@ -58,8 +58,8 @@ export function createTOC(headings: HeadingNode[], options: Options): ListNode {
     }
   }
 
-  let toc = levels.pop()!.list;
-  return toc;
+  let firstLevel = levels[1] || levels[0];
+  return firstLevel.list;
 }
 
 /**
@@ -103,8 +103,8 @@ function createListItem(heading: HeadingNode, options: Options): ListItemNode {
         type: "element",
         tagName: "a",
         properties: {
-          href: `#${heading.properties.id || ""}`,
           class: `${options.cssClasses.link} ${options.cssClasses.link}-${heading.tagName}`,
+          href: `#${heading.properties.id || ""}`,
         },
         children: [
           {
