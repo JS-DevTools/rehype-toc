@@ -20,7 +20,7 @@ export function createTOC(headings: HeadingNode[], options: Options): ListNode {
   };
 
   for (let heading of headings) {
-    let headingNumber = options.headings.indexOf(heading.tagName) + 1;
+    let headingNumber = parseInt(heading.tagName.slice(-1), 10);
 
     if (headingNumber > currentLevel.headingNumber) {
       // This is a higher heading number, so start a new level
@@ -52,17 +52,6 @@ export function createTOC(headings: HeadingNode[], options: Options): ListNode {
             break;
           }
         }
-
-        // while (levels.length > 1) {
-        //   let previousLevel = levels.slice(-2, -1)[0];
-        //   if (previousLevel.headingNumber === headingNumber) {
-        //     levels.pop();
-        //     currentLevel = previousLevel;
-        //   }
-        //   else {
-        //     break;
-        //   }
-        // }
 
         // If headings are in an incorrect order, then we may need to adjust the headingNumber
         currentLevel.headingNumber = Math.min(currentLevel.headingNumber, headingNumber);
