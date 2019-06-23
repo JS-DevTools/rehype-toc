@@ -1,5 +1,5 @@
 # Table of Contents plugin for rehype
-A rehype plugin that adds a table of contents (TOC) to the page
+A [rehype](https://github.com/rehypejs/rehype) plugin that adds a table of contents (TOC) to the page
 
 [![Cross-Platform Compatibility](https://jsdevtools.org/img/badges/os-badges.svg)](https://travis-ci.com/JS-DevTools/rehype-toc)
 [![Build Status](https://api.travis-ci.com/JS-DevTools/rehype-toc.svg?branch=master)](https://travis-ci.com/JS-DevTools/rehype-toc)
@@ -26,10 +26,151 @@ Features
 Example
 --------------------------
 
-```javascript
-import toc from "rehype-toc";
+**input.html**<br>
+Here's the original HTML file. There are three levels of headings (`<h1>` - `<h3>`), and none of them have IDs.
 
-// TODO: Add a usage example here
+```html
+<html>
+  <body>
+    <h1>Apple Pie Recipe</h1>
+    <p>This is the world's best apple pie recipe...</p>
+
+    <div>
+      <h2>Filling</h2>
+      <p>The filling is the best part...</p>
+
+      <h3>Preparing the apples</h3>
+      <p>Cut the apples into 1/4 inch slices...</p>
+
+      <h3>Preparing the spice mix</h3>
+      <p>In a mixing bowl, combine sugar, cinnamon...</p>
+    </div>
+
+    <div>
+      <h2>Crust</h2>
+      <p>How to make the perfect flaky crust...</p>
+
+      <h3>Preparing the dough</h3>
+      <p>Combine flour, sugar, salt...</p>
+
+      <h3>The criss-cross top</h3>
+      <p>Cut the top crust into 1/2 inch strips...</p>
+    </div>
+  </body>
+</html>
+```
+
+**example.js**<br>
+This script reads the `input.html` file above writes the results to `output.html` (shown below). The script uses [unified](https://unified.js.org/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-slug](https://github.com/rehypejs/rehype-slug), and [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify).
+
+
+```javascript
+const unified = require("unified");
+const parse = require("rehype-parse");
+const slug = require("rehype-slug");
+const toc = require("rehype-toc");
+const stringify = require("rehype-stringify");
+const fs = require("fs");
+
+async function example() {
+  // Create a Rehype processor with the TOC plugin
+  const processor = unified()
+    .use(parse)
+    .use(slug)
+    .use(toc)
+    .use(stringify);
+
+  // Read the original HTML file
+  let inputHTML = await fs.promises.readFile("input.html");
+
+  // Process the HTML, adding heading IDs and Table of Contents
+  let outputHTML = await processor.process(inputHTML);
+
+  // Save the new HTML
+  await fs.promises.writeFile("output.html", outputHTML);
+}
+```
+
+**output.html**<br>
+Here's the HTML that gets created by the above script. Notice that a table of contents has been added at the top of the `<body>`, with links to each of the headings on the page. The headings also now have IDs, thanks to [rehype-slug](https://github.com/rehypejs/rehype-slug).
+
+```html
+<html>
+  <body>
+    <ol class="toc toc-level toc-level-1">
+      <li class="toc-item toc-item-h1">
+        <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
+          Apple Pie Recipe
+        </a>
+
+        <ol class="toc-level toc-level-2">
+          <li class="toc-item toc-item-h2">
+            <a class="toc-link toc-link-h2" href="#filling">
+              Filling
+            </a>
+
+            <ol class="toc-level toc-level-3">
+              <li class="toc-item toc-item-h3">
+                <a class="toc-link toc-link-h3" href="#preparing-the-apples">
+                  Preparing the apples
+                </a>
+              </li>
+              <li class="toc-item toc-item-h3">
+                <a class="toc-link toc-link-h3" href="#preparing-the-spice-mix">
+                  Preparing the spice mix
+                </a>
+              </li>
+            </ol>
+          </li>
+
+          <li class="toc-item toc-item-h2">
+            <a class="toc-link toc-link-h2" href="#crust">
+              Crust
+            </a>
+
+            <ol class="toc-level toc-level-3">
+              <li class="toc-item toc-item-h3">
+                <a class="toc-link toc-link-h3" href="#preparing-the-dough">
+                  Preparing the dough
+                </a>
+              </li>
+              <li class="toc-item toc-item-h3">
+                <a class="toc-link toc-link-h3" href="#the-criss-cross-top">
+                  The criss-cross top
+                </a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+
+    <h1 id="apple-pie-recipe">Apple Pie Recipe</h1>
+    <p>This is the world's best apple pie recipe...</p>
+
+    <div>
+      <h2 id="filling">Filling</h2>
+      <p>The filling is the best part...</p>
+
+      <h3 id="preparing-the-apples">Preparing the apples</h3>
+      <p>Cut the apples into 1/4 inch slices...</p>
+
+      <h3 id="preparing-the-spice-mix">Preparing the spice mix</h3>
+      <p>In a mixing bowl, combine sugar, cinnamon...</p>
+    </div>
+
+    <div>
+      <h2 id="crust">Crust</h2>
+      <p>How to make the perfect flaky crust...</p>
+
+      <h3 id="preparing-the-dough">Preparing the dough</h3>
+      <p>Combine flour, sugar, salt...</p>
+
+      <h3 id="the-criss-cross-top">The criss-cross top</h3>
+      <p>Cut the top crust into 1/2 inch strips...</p>
+    </div>
+  </body>
+</html>
 ```
 
 
