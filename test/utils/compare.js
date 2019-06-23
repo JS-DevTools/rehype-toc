@@ -21,7 +21,8 @@ function compare (actual, expected) {
  */
 function normalizeWhitespace (html) {
   html = html.trim();
-  html = html.replace(/\>\s+\</g, "><");
+  html = html.replace(/\>\s+/g, ">");
+  html = html.replace(/\s+\</g, "<");
   html = html.replace(/\>\</g, ">\n<");
   return html;
 }
