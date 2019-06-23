@@ -183,11 +183,51 @@ You can install `rehype-toc` via [npm](https://docs.npmjs.com/about-npm/).
 npm install rehype-toc
 ```
 
+You'll probably want to install [unified](https://unified.js.org/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify), and [rehype-slug](https://github.com/rehypejs/rehype-slug) as well.
+
+```bash
+npm install unified rehype-parse rehype-stringify rehype-slug
+```
+
 
 
 Usage
 --------------------------
-TODO: Document the library's API and CLI usage
+Using the Rehype TOC plugin requires an understanding of how to use Unified and Rehype. [Here is an excelleng guide](https://unified.js.org/using-unified.html) to learn the basics.
+
+The Rehype TOC plugin works just like any other Rehype plugin. Pass it to [the `.use()` method](https://github.com/unifiedjs/unified#processoruseplugin-options), optionally with an [options object](#options).
+
+```javascript
+const unified = require("unified");
+const toc = require("rehype-toc");
+
+// Use the Rehype TOC plugin with its default options
+unified().use(toc);
+
+// Use the Rehype TOC plugin with custom options
+unified().use(toc, {
+  headings: ["h1", "h2"],     // Only include <h1> and <h2> headings in the TOC
+  cssClasses: {
+    toc: "page-outline",      // Change the CSS class for the TOC
+    link: "page-link",        // Change the CSS class for links in the TOC
+  }
+});
+```
+
+
+
+Options
+--------------------------
+Rehype Rehype TOC supports the following options:
+
+|Option                |Type                |Default                |Description
+|:---------------------|:-------------------|:----------------------|:-----------------------------------------
+|`headings`            |array of strings    |h1, h2, h3, h4, h5, h6 |The HTML heading tags to include in the table of contents
+|`cssClasses.toc`      |string              |toc                    |The CSS class name for the top-level `<ol>` element that contains the whole table of contents.
+|`cssClasses.list`     |string              |toc-level              |The CSS class name for all `<ol>` elements in the table of contents, including the top-level one.
+|`cssClasses.listItem` |string              |toc-item               |The CSS class name for all `<li>` elements in the table of contents.
+|`cssClasses.link`     |string              |toc-link               |The CSS class name for all `<a>` elements in the table of contents.
+|`customizeTOC`        |function            |no-op                  |Allows you to customize the table of contents before it is added to the page.<br><br>The function receives the TOC node tree and can modify it in any way you want. Or you can return a new node tree to use instead. Or return `false` to prevent the the TOC from being added to the page.
 
 
 
