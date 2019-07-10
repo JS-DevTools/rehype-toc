@@ -14,7 +14,7 @@ A [rehype](https://github.com/rehypejs/rehype) plugin that adds a table of conte
 
 Features
 --------------------------
-- Adds an `<ol>` list outlining all headings on the page
+- Adds a `<nav>` and `<ol>` list outlining all headings on the page
 - Combine with [rehype-slug](https://github.com/rehypejs/rehype-slug) to create links to each heading
 - Ignores headings outside of `<main>` if it exists
 - You can customize which headings are included (defaults to `<h1>` - `<h6>`)
@@ -97,53 +97,55 @@ Here's the HTML that gets created by the above script. Notice that a table of co
 ```html
 <html>
   <body>
-    <ol class="toc toc-level toc-level-1">
-      <li class="toc-item toc-item-h1">
-        <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
-          Apple Pie Recipe
-        </a>
+    <nav class="toc">
+      <ol class="toc-level toc-level-1">
+        <li class="toc-item toc-item-h1">
+          <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
+            Apple Pie Recipe
+          </a>
 
-        <ol class="toc-level toc-level-2">
-          <li class="toc-item toc-item-h2">
-            <a class="toc-link toc-link-h2" href="#filling">
-              Filling
-            </a>
+          <ol class="toc-level toc-level-2">
+            <li class="toc-item toc-item-h2">
+              <a class="toc-link toc-link-h2" href="#filling">
+                Filling
+              </a>
 
-            <ol class="toc-level toc-level-3">
-              <li class="toc-item toc-item-h3">
-                <a class="toc-link toc-link-h3" href="#preparing-the-apples">
-                  Preparing the apples
-                </a>
-              </li>
-              <li class="toc-item toc-item-h3">
-                <a class="toc-link toc-link-h3" href="#preparing-the-spice-mix">
-                  Preparing the spice mix
-                </a>
-              </li>
-            </ol>
-          </li>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h3">
+                  <a class="toc-link toc-link-h3" href="#preparing-the-apples">
+                    Preparing the apples
+                  </a>
+                </li>
+                <li class="toc-item toc-item-h3">
+                  <a class="toc-link toc-link-h3" href="#preparing-the-spice-mix">
+                    Preparing the spice mix
+                  </a>
+                </li>
+              </ol>
+            </li>
 
-          <li class="toc-item toc-item-h2">
-            <a class="toc-link toc-link-h2" href="#crust">
-              Crust
-            </a>
+            <li class="toc-item toc-item-h2">
+              <a class="toc-link toc-link-h2" href="#crust">
+                Crust
+              </a>
 
-            <ol class="toc-level toc-level-3">
-              <li class="toc-item toc-item-h3">
-                <a class="toc-link toc-link-h3" href="#preparing-the-dough">
-                  Preparing the dough
-                </a>
-              </li>
-              <li class="toc-item toc-item-h3">
-                <a class="toc-link toc-link-h3" href="#the-criss-cross-top">
-                  The criss-cross top
-                </a>
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-    </ol>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h3">
+                  <a class="toc-link toc-link-h3" href="#preparing-the-dough">
+                    Preparing the dough
+                  </a>
+                </li>
+                <li class="toc-item toc-item-h3">
+                  <a class="toc-link toc-link-h3" href="#the-criss-cross-top">
+                    The criss-cross top
+                  </a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
 
     <h1 id="apple-pie-recipe">Apple Pie Recipe</h1>
     <p>This is the world's best apple pie recipe...</p>
@@ -223,7 +225,8 @@ Rehype Rehype TOC supports the following options:
 |Option                |Type                |Default                |Description
 |:---------------------|:-------------------|:----------------------|:-----------------------------------------
 |`headings`            |array of strings    |h1, h2, h3, h4, h5, h6 |The HTML heading tags to include in the table of contents
-|`cssClasses.toc`      |string              |toc                    |The CSS class name for the top-level `<ol>` element that contains the whole table of contents.
+|`nav`                 |boolean             |true                   |Determines whether the table of contents is wrapped in a `<nav>` element.
+|`cssClasses.toc`      |string              |toc                    |The CSS class name for the top-level `<nav>` or `<ol>` element that contains the whole table of contents.
 |`cssClasses.list`     |string              |toc-level              |The CSS class name for all `<ol>` elements in the table of contents, including the top-level one.
 |`cssClasses.listItem` |string              |toc-item               |The CSS class name for all `<li>` elements in the table of contents.
 |`cssClasses.link`     |string              |toc-link               |The CSS class name for all `<a>` elements in the table of contents.
