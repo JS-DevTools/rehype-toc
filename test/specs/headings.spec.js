@@ -45,26 +45,28 @@ describe("options.headings", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1">
-            <li class="toc-item toc-item-h1">
-              <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
-                Apple Pie Recipe
-              </a>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1">
+              <li class="toc-item toc-item-h1">
+                <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
+                  Apple Pie Recipe
+                </a>
 
-              <ol class="toc-level toc-level-2">
-                <li class="toc-item toc-item-h2">
-                  <a class="toc-link toc-link-h2" href="#filling">
-                    Filling
-                  </a>
-                </li>
-                <li class="toc-item toc-item-h2">
-                  <a class="toc-link toc-link-h2" href="#crust">
-                    Crust
-                  </a>
-                </li>
-              </ol>
-            </li>
-          </ol>
+                <ol class="toc-level toc-level-2">
+                  <li class="toc-item toc-item-h2">
+                    <a class="toc-link toc-link-h2" href="#filling">
+                      Filling
+                    </a>
+                  </li>
+                  <li class="toc-item toc-item-h2">
+                    <a class="toc-link toc-link-h2" href="#crust">
+                      Crust
+                    </a>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </nav>
 
           <h1 id="apple-pie-recipe">Apple Pie Recipe</h1>
           <p>This is the world's best apple pie recipe...</p>
@@ -114,29 +116,31 @@ describe("options.headings", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1">
-            <li class="toc-item toc-item-h1">
-              <a class="toc-link toc-link-h1" href="#">One</a>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1">
+              <li class="toc-item toc-item-h1">
+                <a class="toc-link toc-link-h1" href="#">One</a>
 
-              <ol class="toc-level toc-level-2">
-                <li class="toc-item toc-item-h2">
-                  <a class="toc-link toc-link-h2" href="#">Two</a>
+                <ol class="toc-level toc-level-2">
+                  <li class="toc-item toc-item-h2">
+                    <a class="toc-link toc-link-h2" href="#">Two</a>
 
-                  <ol class="toc-level toc-level-3">
-                    <li class="toc-item toc-item-h3">
-                      <a class="toc-link toc-link-h3" href="#">Three</a>
+                    <ol class="toc-level toc-level-3">
+                      <li class="toc-item toc-item-h3">
+                        <a class="toc-link toc-link-h3" href="#">Three</a>
 
-                      <ol class="toc-level toc-level-4">
-                        <li class="toc-item toc-item-h4">
-                          <a class="toc-link toc-link-h4" href="#">Four</a>
-                        </li>
-                      </ol>
-                    </li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
+                        <ol class="toc-level toc-level-4">
+                          <li class="toc-item toc-item-h4">
+                            <a class="toc-link toc-link-h4" href="#">Four</a>
+                          </li>
+                        </ol>
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </nav>
 
           <h1>One</h1>
           <h2>Two</h2>
@@ -166,17 +170,19 @@ describe("options.headings", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1">
-            <li class="toc-item toc-item-h2">
-              <a class="toc-link toc-link-h2" href="#">Two</a>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1">
+              <li class="toc-item toc-item-h2">
+                <a class="toc-link toc-link-h2" href="#">Two</a>
 
-              <ol class="toc-level toc-level-2">
-                <li class="toc-item toc-item-h4">
-                  <a class="toc-link toc-link-h4" href="#">Four</a>
-                </li>
-              </ol>
-            </li>
-          </ol>
+                <ol class="toc-level toc-level-2">
+                  <li class="toc-item toc-item-h4">
+                    <a class="toc-link toc-link-h4" href="#">Four</a>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </nav>
 
           <h1>One</h1>
           <h2>Two</h2>
@@ -206,8 +212,10 @@ describe("options.headings", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1">
-          </ol>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1">
+            </ol>
+          </nav>
 
           <h1>One</h1>
           <h2>Two</h2>

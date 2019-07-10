@@ -18,10 +18,10 @@ describe("options.customizeTOC", () => {
     `,
     {
       customizeTOC (toc) {
-        toc.tagName = "ul";
+        toc.tagName = "div";
         toc.properties.class = "my-custom-class";
         toc.properties.id = "my-custom-id";
-        toc.children[0].children.splice(1, 1);
+        toc.children[0].children[0].children.splice(1, 1);
       },
     });
 
@@ -29,11 +29,13 @@ describe("options.customizeTOC", () => {
       <html>
         <head></head>
         <body>
-          <ul class="my-custom-class" id="my-custom-id">
-            <li class="toc-item toc-item-h1">
-              <a class="toc-link toc-link-h1" href="#">One</a>
-            </li>
-          </ul>
+          <div class="my-custom-class" id="my-custom-id">
+            <ol class="toc-level toc-level-1">
+              <li class="toc-item toc-item-h1">
+                <a class="toc-link toc-link-h1" href="#">One</a>
+              </li>
+            </ol>
+          </div>
 
           <h1>One</h1>
           <h2>Two</h2>
@@ -64,8 +66,8 @@ describe("options.customizeTOC", () => {
             id: "table-of-contents",
           },
           children: [
-            toc.children[0].children[0],
-            toc.children[0].children[1].children[0].children[0],
+            toc.children[0].children[0].children[0],
+            toc.children[0].children[0].children[1].children[0].children[0],
           ]
         };
       },

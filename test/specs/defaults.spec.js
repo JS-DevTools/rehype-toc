@@ -42,53 +42,55 @@ describe("Default Behavior", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1">
-            <li class="toc-item toc-item-h1">
-              <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
-                Apple Pie Recipe
-              </a>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1">
+              <li class="toc-item toc-item-h1">
+                <a class="toc-link toc-link-h1" href="#apple-pie-recipe">
+                  Apple Pie Recipe
+                </a>
 
-              <ol class="toc-level toc-level-2">
-                <li class="toc-item toc-item-h2">
-                  <a class="toc-link toc-link-h2" href="#filling">
-                    Filling
-                  </a>
+                <ol class="toc-level toc-level-2">
+                  <li class="toc-item toc-item-h2">
+                    <a class="toc-link toc-link-h2" href="#filling">
+                      Filling
+                    </a>
 
-                  <ol class="toc-level toc-level-3">
-                    <li class="toc-item toc-item-h3">
-                      <a class="toc-link toc-link-h3" href="#preparing-the-apples">
-                        Preparing the apples
-                      </a>
-                    </li>
-                    <li class="toc-item toc-item-h3">
-                      <a class="toc-link toc-link-h3" href="#preparing-the-spice-mix">
-                        Preparing the spice mix
-                      </a>
-                    </li>
-                  </ol>
-                </li>
+                    <ol class="toc-level toc-level-3">
+                      <li class="toc-item toc-item-h3">
+                        <a class="toc-link toc-link-h3" href="#preparing-the-apples">
+                          Preparing the apples
+                        </a>
+                      </li>
+                      <li class="toc-item toc-item-h3">
+                        <a class="toc-link toc-link-h3" href="#preparing-the-spice-mix">
+                          Preparing the spice mix
+                        </a>
+                      </li>
+                    </ol>
+                  </li>
 
-                <li class="toc-item toc-item-h2">
-                  <a class="toc-link toc-link-h2" href="#crust">
-                    Crust
-                  </a>
+                  <li class="toc-item toc-item-h2">
+                    <a class="toc-link toc-link-h2" href="#crust">
+                      Crust
+                    </a>
 
-                  <ol class="toc-level toc-level-3">
-                    <li class="toc-item toc-item-h3">
-                      <a class="toc-link toc-link-h3" href="#preparing-the-dough">
-                        Preparing the dough
-                      </a>
-                    </li>
-                    <li class="toc-item toc-item-h3">
-                      <a class="toc-link toc-link-h3" href="#the-criss-cross-top">
-                        The criss-cross top
-                      </a>
-                    </li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
+                    <ol class="toc-level toc-level-3">
+                      <li class="toc-item toc-item-h3">
+                        <a class="toc-link toc-link-h3" href="#preparing-the-dough">
+                          Preparing the dough
+                        </a>
+                      </li>
+                      <li class="toc-item toc-item-h3">
+                        <a class="toc-link toc-link-h3" href="#the-criss-cross-top">
+                          The criss-cross top
+                        </a>
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </nav>
 
           <h1 id="apple-pie-recipe">Apple Pie Recipe</h1>
           <p>This is the world's best apple pie recipe...</p>

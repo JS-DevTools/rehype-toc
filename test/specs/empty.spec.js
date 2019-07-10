@@ -12,7 +12,9 @@ describe("Empty TOC", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1"></ol>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1"></ol>
+          </nav>
         </body>
       </html>
     `);
@@ -26,7 +28,9 @@ describe("Empty TOC", () => {
         <head></head>
         <body>
           <main>
-            <ol class="toc toc-level toc-level-1"></ol>
+            <nav class="toc">
+              <ol class="toc-level toc-level-1"></ol>
+            </nav>
           </main>
         </body>
       </html>
@@ -40,7 +44,9 @@ describe("Empty TOC", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1"></ol>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1"></ol>
+          </nav>
         </body>
       </html>
     `);
@@ -54,7 +60,9 @@ describe("Empty TOC", () => {
         <head></head>
         <body>
           <main>
-            <ol class="toc toc-level toc-level-1"></ol>
+            <nav class="toc">
+              <ol class="toc-level toc-level-1"></ol>
+            </nav>
           </main>
         </body>
       </html>
@@ -74,7 +82,9 @@ describe("Empty TOC", () => {
       <html>
         <head></head>
         <body>
-          <ol class="toc toc-level toc-level-1"></ol>
+          <nav class="toc">
+            <ol class="toc-level toc-level-1"></ol>
+          </nav>
           <p>Lorem ipsum dolor sit amet...</p>
         </body>
       </html>
@@ -97,7 +107,9 @@ describe("Empty TOC", () => {
         <head></head>
         <body>
           <main>
-            <ol class="toc toc-level toc-level-1"></ol>
+            <nav class="toc">
+              <ol class="toc-level toc-level-1"></ol>
+            </nav>
             <p>Lorem ipsum dolor sit amet...</p>
           </main>
         </body>
@@ -135,7 +147,9 @@ describe("Empty TOC", () => {
             <h1>This heading is outside of the main</h1>
           </header>
           <main>
-            <ol class="toc toc-level toc-level-1"></ol>
+            <nav class="toc">
+              <ol class="toc-level toc-level-1"></ol>
+            </nav>
             <p>Lorem ipsum dolor sit amet...</p>
           </main>
           <footer>
