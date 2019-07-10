@@ -1,6 +1,6 @@
 import { getInnerText } from "./get-inner-text";
 import { buildClass, Options } from "./options";
-import { HeadingNode, ListItemNode, ListNode } from "./types";
+import { HeadingNode, HtmlElementNode, ListItemNode, ListNode } from "./types";
 
 interface TocLevel {
   depth: number;
@@ -9,9 +9,31 @@ interface TocLevel {
 }
 
 /**
+ * Creates a `<nav>` and/or `<ol>` element containing the table of contents.
+ */
+export function createTOC(headings: HeadingNode[], options: Options): HtmlElementNode {
+  let list = createTocList(headings, options);
+
+  if (options.nav) {
+    return {
+      type: "element",
+      tagName: "nav",
+      properties: {
+        class: options.cssClasses.toc || undefined,
+      },
+      children: [list],
+    };
+  }
+  else {
+    list.properties.class = [options.cssClasses.toc, list.properties.class].filter(Boolean).join(" ") || undefined;
+    return list;
+  }
+}
+
+/**
  * Creates an `<ol>` element containing the table of contents.
  */
-export function createTOC(headings: HeadingNode[], options: Options): ListNode {
+function createTocList(headings: HeadingNode[], options: Options): HtmlElementNode {
   let levels: TocLevel[] = [];
   let currentLevel: TocLevel = {
     depth: 0,
@@ -88,11 +110,6 @@ function createList(heading: HeadingNode | undefined, depth: number, options: Op
   if (heading) {
     let listItem = createListItem(heading, options);
     list.children.push(listItem);
-  }
-
-  if (depth === 1 && options.cssClasses.toc) {
-    // This is the top-level table of contents list
-    list.properties.class = options.cssClasses.toc + " " + (list.properties.class || "");
   }
 
   return list;

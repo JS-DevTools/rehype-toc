@@ -1,5 +1,5 @@
 import { Node } from "unist";
-import { HeadingTagName, ListNode } from "./types";
+import { HeadingTagName, HtmlElementNode } from "./types";
 
 /**
  * Options for the Rehype TOC plugin
@@ -13,11 +13,18 @@ export interface Options {
   headings: HeadingTagName[];
 
   /**
+   * Determines whether the table of contents is wrapped in a `<nav>` element.
+   *
+   * Defaults to `true`.
+   */
+  nav: boolean;
+
+  /**
    * CSS class names for various parts of the table of contents.
    */
   cssClasses: {
     /**
-     * The CSS class name for the top-level `<ol>` element that contains the whole table of contents.
+     * The CSS class name for the top-level `<nav>` or `<ol>` element that contains the whole table of contents.
      *
      * Defaults to "toc".
      */
@@ -53,7 +60,7 @@ export interface Options {
    * existing node. You can return a falsy value to prevent the table of contents from being added
    * to the page.
    */
-  customizeTOC(toc: ListNode): Node | undefined | false;
+  customizeTOC(toc: HtmlElementNode): Node | undefined | false;
 }
 
 /**
@@ -83,6 +90,7 @@ export function applyDefaults(config: PartialOptions = {}): Options {
       listItem: cssClasses.listItem === undefined ? "toc-item" : cssClasses.listItem,
       link: cssClasses.link === undefined ? "toc-link" : cssClasses.link,
     },
+    nav: config.nav === undefined ? true : Boolean(config.nav),
     customizeTOC: config.customizeTOC || ((toc: Node) => toc),
   };
 }

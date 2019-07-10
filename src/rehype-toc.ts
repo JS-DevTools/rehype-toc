@@ -21,10 +21,10 @@ export function toc(this: Processor, config?: PartialOptions): Transformer {
     let headings = findHeadings(mainNode, options);
 
     // Create the table of contents
-    let list = createTOC(headings, options);
+    let tocNode = createTOC(headings, options);
 
     // Allow the user to customize the table of contents before we add it to the page
-    let node = customizeTOC(list, options);
+    let node = customizeTOC(tocNode, options);
 
     if (node) {
       // Add the table of contents to the <main> element
