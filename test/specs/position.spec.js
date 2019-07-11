@@ -2,6 +2,7 @@
 
 const process = require("../utils/process");
 const compare = require("../utils/compare");
+const { expect } = require("chai");
 
 describe("options.position", () => {
   describe("beforebegin", () => {
@@ -344,5 +345,30 @@ describe("options.position", () => {
         </html>
       `);
     });
+  });
+
+
+  it("should should throw an error if set to an invalid value", async () => {
+    let error;
+
+    try {
+      await process(`
+        <html>
+          <body>
+            <main>This is the content</main>
+            Lorem ipsum dolor sit amet...
+          </body>
+        </html>
+      `,
+      {
+        position: "foobar",
+      });
+    }
+    catch (e) {
+      error = e;
+    }
+
+    expect(error).to.be.an.instanceOf(Error);
+    expect(error.message).to.equal("Invalid table-of-contents position: foobar");
   });
 });
