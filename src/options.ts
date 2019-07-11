@@ -2,22 +2,38 @@ import { Node } from "unist";
 import { HeadingTagName, HtmlElementNode } from "./types";
 
 /**
+ * The different positions at which the table of contents can be inserted,
+ * relative to the `<main>` element.
+ */
+export type InsertPosition = "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+
+/**
  * Options for the Rehype TOC plugin
  */
 export interface Options {
-  /**
-   * HTML heading elements to include in the table of contents.
-   *
-   * Defaults to all headings ("h1" through "h6").
-   */
-  headings: HeadingTagName[];
-
   /**
    * Determines whether the table of contents is wrapped in a `<nav>` element.
    *
    * Defaults to `true`.
    */
   nav: boolean;
+
+  /**
+   * The position at which the table of contents should be inserted, relative to the `<main>`
+   * element.
+   *
+   * Defaults to "afterbegin";
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement
+   */
+  position: InsertPosition;
+
+  /**
+   * HTML heading elements to include in the table of contents.
+   *
+   * Defaults to all headings ("h1" through "h6").
+   */
+  headings: HeadingTagName[];
 
   /**
    * CSS class names for various parts of the table of contents.
@@ -83,6 +99,8 @@ export function applyDefaults(config: PartialOptions = {}): Options {
   let cssClasses = config.cssClasses || {};
 
   return {
+    nav: config.nav === undefined ? true : Boolean(config.nav),
+    position: config.position || "afterbegin",
     headings: config.headings || ["h1", "h2", "h3", "h4", "h5", "h6"],
     cssClasses: {
       toc: cssClasses.toc === undefined ? "toc" : cssClasses.toc,
@@ -90,7 +108,6 @@ export function applyDefaults(config: PartialOptions = {}): Options {
       listItem: cssClasses.listItem === undefined ? "toc-item" : cssClasses.listItem,
       link: cssClasses.link === undefined ? "toc-link" : cssClasses.link,
     },
-    nav: config.nav === undefined ? true : Boolean(config.nav),
     customizeTOC: config.customizeTOC || ((toc: Node) => toc),
   };
 }

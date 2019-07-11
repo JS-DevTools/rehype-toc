@@ -4,18 +4,19 @@ import { createTOC } from "./create-toc";
 import { customizeTOC } from "./customize-toc";
 import { findHeadings } from "./fiind-headings";
 import { findMainNode } from "./find-main-node";
+import { insertTOC } from "./insert-toc";
 import { applyDefaults, PartialOptions } from "./options";
 
 /**
  * This is a Rehype plugin that adds a table of contents (TOC) that links to all
  * the `<h1>` - `<h6>` headings no the page.
  */
-export function toc(this: Processor, config?: PartialOptions): Transformer {
-  let options = applyDefaults(config);
+export function toc(this: Processor, opts?: PartialOptions): Transformer {
+  let options = applyDefaults(opts);
 
   return function transformer(root: Node): Node {
     // Find the <main> or <body> element
-    let mainNode = findMainNode(root);
+    let [mainNode, mainParent] = findMainNode(root);
 
     // Find all heading elements
     let headings = findHeadings(mainNode, options);
@@ -28,7 +29,7 @@ export function toc(this: Processor, config?: PartialOptions): Transformer {
 
     if (node) {
       // Add the table of contents to the <main> element
-      mainNode.children!.unshift(node);
+      insertTOC(node, mainNode, mainParent, options);
     }
 
     return root;
