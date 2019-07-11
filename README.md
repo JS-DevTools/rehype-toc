@@ -224,8 +224,9 @@ Rehype Rehype TOC supports the following options:
 
 |Option                |Type                |Default                |Description
 |:---------------------|:-------------------|:----------------------|:-----------------------------------------
-|`headings`            |array of strings    |h1, h2, h3, h4, h5, h6 |The HTML heading tags to include in the table of contents
 |`nav`                 |boolean             |true                   |Determines whether the table of contents is wrapped in a `<nav>` element.
+|`position`            |string              |"afterbegin"           |The position at which the table of contents should be inserted, relative to the `<main>` or `<body>` element. Can be "beforebegin", "afterbegin", "beforeend", or "afterend". See [the `insertAdjacentElement()` docs](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement) for an explanation of each value.
+|`headings`            |array of strings    |h1, h2, h3, h4, h5, h6 |The HTML heading tags to include in the table of contents
 |`cssClasses.toc`      |string              |toc                    |The CSS class name for the top-level `<nav>` or `<ol>` element that contains the whole table of contents.
 |`cssClasses.list`     |string              |toc-level              |The CSS class name for all `<ol>` elements in the table of contents, including the top-level one.
 |`cssClasses.listItem` |string              |toc-item               |The CSS class name for all `<li>` elements in the table of contents.
