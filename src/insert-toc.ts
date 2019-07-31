@@ -1,5 +1,5 @@
 import { Node } from "unist";
-import { Options } from "./options";
+import { NormalizedOptions } from "./options";
 import { HtmlElementNode } from "./types";
 
 /**
@@ -10,7 +10,7 @@ import { HtmlElementNode } from "./types";
  * @param parent - The parent node of `target`. This is used for inserting `toc` before/after `target`
  * @param options - The `position` option determines where `toc` is inserted
  */
-export function insertTOC(toc: Node, target: HtmlElementNode, parent: HtmlElementNode, { position }: Options): void {
+export function insertTOC(toc: Node, target: HtmlElementNode, parent: HtmlElementNode, { position }: NormalizedOptions): void {
   let childIndex = parent.children!.indexOf(target);
 
   switch (position) {

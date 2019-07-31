@@ -1,5 +1,5 @@
 import { getInnerText } from "./get-inner-text";
-import { buildClass, Options } from "./options";
+import { buildClass, NormalizedOptions } from "./options";
 import { HeadingNode, HtmlElementNode, ListItemNode, ListNode } from "./types";
 
 interface TocLevel {
@@ -11,7 +11,7 @@ interface TocLevel {
 /**
  * Creates a `<nav>` and/or `<ol>` element containing the table of contents.
  */
-export function createTOC(headings: HeadingNode[], options: Options): HtmlElementNode {
+export function createTOC(headings: HeadingNode[], options: NormalizedOptions): HtmlElementNode {
   let list = createTocList(headings, options);
 
   if (options.nav) {
@@ -33,7 +33,7 @@ export function createTOC(headings: HeadingNode[], options: Options): HtmlElemen
 /**
  * Creates an `<ol>` element containing the table of contents.
  */
-function createTocList(headings: HeadingNode[], options: Options): HtmlElementNode {
+function createTocList(headings: HeadingNode[], options: NormalizedOptions): HtmlElementNode {
   let levels: TocLevel[] = [];
   let currentLevel: TocLevel = {
     depth: 0,
@@ -97,12 +97,12 @@ function createTocList(headings: HeadingNode[], options: Options): HtmlElementNo
 /**
  * Creates an `<ol>` and `<li>` element for the given heading
  */
-function createList(heading: HeadingNode | undefined, depth: number, options: Options): ListNode {
+function createList(heading: HeadingNode | undefined, depth: number, options: NormalizedOptions): ListNode {
   let list: ListNode = {
     type: "element",
     tagName: "ol",
     properties: {
-      class: buildClass(options.cssClasses.list, depth),
+      className: buildClass(options.cssClasses.list, depth),
     },
     children: [],
   };
@@ -118,7 +118,7 @@ function createList(heading: HeadingNode | undefined, depth: number, options: Op
 /**
  * Creates an `<li>` element for the given heading
  */
-function createListItem(heading: HeadingNode, options: Options): ListItemNode {
+function createListItem(heading: HeadingNode, options: NormalizedOptions): ListItemNode {
   return {
     type: "element",
     tagName: "li",

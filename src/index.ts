@@ -1,6 +1,6 @@
 import { toc } from "./rehype-toc";
 
-export { InsertPosition, Options, PartialOptions } from "./options";
+export { CssClasses, InsertPosition, Options } from "./options";
 export * from "./types";
 export { toc };
 

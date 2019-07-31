@@ -1,5 +1,5 @@
 import { Node } from "unist";
-import { HeadingTagName, HtmlElementNode } from "./types";
+import { HeadingTagName, HtmlElementNode, ListItemNode } from "./types";
 
 /**
  * The different positions at which the table of contents can be inserted,
@@ -16,7 +16,7 @@ export interface Options {
    *
    * Defaults to `true`.
    */
-  nav: boolean;
+  nav?: boolean;
 
   /**
    * The position at which the table of contents should be inserted, relative to the `<main>`
@@ -26,47 +26,19 @@ export interface Options {
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement
    */
-  position: InsertPosition;
+  position?: InsertPosition;
 
   /**
    * HTML heading elements to include in the table of contents.
    *
    * Defaults to all headings ("h1" through "h6").
    */
-  headings: HeadingTagName[];
+  headings?: HeadingTagName[];
 
   /**
    * CSS class names for various parts of the table of contents.
    */
-  cssClasses: {
-    /**
-     * The CSS class name for the top-level `<nav>` or `<ol>` element that contains the whole table of contents.
-     *
-     * Defaults to "toc".
-     */
-    toc: string;
-
-    /**
-     * The CSS class name for all `<ol>` elements in the table of contents, including the top-level one.
-     *
-     * Defaults to "toc-level", which also adds "toc-level-1", "toc-level-2", etc.
-     */
-    list: string;
-
-    /**
-     * The CSS class name for all `<li>` elements in the table of contents.
-     *
-     * Defaults to "toc-item", which also adds "toc-item-h1", "toc-item-h2", etc.
-     */
-    listItem: string;
-
-    /**
-     * The CSS class name for all `<a>` elements in the table of contents.
-     *
-     * Defaults to "toc-link", which also adds "toc-link-h1", "toc-link-h2", etc.
-     */
-    link: string;
-  };
+  cssClasses?: CssClasses;
 
   /**
    * Allows you to customize the table of contents before it is added to the page.
@@ -76,40 +48,70 @@ export interface Options {
    * existing node. You can return a falsy value to prevent the table of contents from being added
    * to the page.
    */
-  customizeTOC(toc: HtmlElementNode): Node | undefined | false;
+  customizeTOC?(toc: HtmlElementNode): Node | boolean | undefined;
 }
 
 /**
- * Options for the Rehype TOC plugin. All fields are optional.
+ * CSS class names for various parts of the table of contents.
  */
-export type PartialOptions = DeepPartial<Options>;
+export interface CssClasses {
+  /**
+   * The CSS class name for the top-level `<nav>` or `<ol>` element that contains the whole table of contents.
+   *
+   * Defaults to "toc".
+   */
+  toc?: string;
+
+  /**
+   * The CSS class name for all `<ol>` elements in the table of contents, including the top-level one.
+   *
+   * Defaults to "toc-level", which also adds "toc-level-1", "toc-level-2", etc.
+   */
+  list?: string;
+
+  /**
+   * The CSS class name for all `<li>` elements in the table of contents.
+   *
+   * Defaults to "toc-item", which also adds "toc-item-h1", "toc-item-h2", etc.
+   */
+  listItem?: string;
+
+  /**
+   * The CSS class name for all `<a>` elements in the table of contents.
+   *
+   * Defaults to "toc-link", which also adds "toc-link-h1", "toc-link-h2", etc.
+   */
+  link?: string;
+}
 
 /**
- * Recursively makes all object properties optional
+ * Normalized, sanitized, and complete settings,
+ * with default values for anything that wasn't specified by the caller.
  */
-export type DeepPartial<T> = {
-  // tslint:disable-next-line: no-any ban-types
-  [P in keyof T]?: T[P] extends string | number | boolean | Function | any[] ? T[P] : DeepPartial<T[P]>;
-};
+export class NormalizedOptions {
+  public readonly nav: boolean;
+  public readonly position: InsertPosition;
+  public readonly headings: HeadingTagName[];
+  public readonly cssClasses: Required<CssClasses>;
+  public readonly customizeTOC?: CustomizationHook;
 
-/**
- * Applies default values for any unspecified options
- */
-export function applyDefaults(config: PartialOptions = {}): Options {
-  let cssClasses = config.cssClasses || {};
+  /**
+   * Applies default values for any unspecified options
+   */
+  public constructor(options: Options = {}) {
+    let cssClasses = options.cssClasses || {};
 
-  return {
-    nav: config.nav === undefined ? true : Boolean(config.nav),
-    position: config.position || "afterbegin",
-    headings: config.headings || ["h1", "h2", "h3", "h4", "h5", "h6"],
-    cssClasses: {
+    this.nav = options.nav === undefined ? true : Boolean(options.nav);
+    this.position = options.position || "afterbegin";
+    this.headings = options.headings || ["h1", "h2", "h3", "h4", "h5", "h6"];
+    this.cssClasses = {
       toc: cssClasses.toc === undefined ? "toc" : cssClasses.toc,
       list: cssClasses.list === undefined ? "toc-level" : cssClasses.list,
       listItem: cssClasses.listItem === undefined ? "toc-item" : cssClasses.listItem,
       link: cssClasses.link === undefined ? "toc-link" : cssClasses.link,
-    },
-    customizeTOC: config.customizeTOC || ((toc: Node) => toc),
-  };
+    };
+    this.customizeTOC = options.customizeTOC;
+  }
 }
 
 /**
