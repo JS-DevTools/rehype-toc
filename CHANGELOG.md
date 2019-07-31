@@ -3,6 +3,13 @@ All notable changes will be documented in this file.
 `rehype-toc` adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [v2.2.0](https://github.com/JS-DevTools/rehype-toc/tree/v2.2.0) (2019-07-31)
+
+- Added a new `customizeTOCItem` option that allows you to customize each item in the table-of-contents before it's added to the page
+
+[Full Changelog](https://github.com/JS-DevTools/rehype-toc/compare/v2.1.0...v2.2.0)
+
+
 ## [v2.1.0](https://github.com/JS-DevTools/rehype-toc/tree/v2.1.0) (2019-07-11)
 
 - Added a new `position` option that allows control over where the table-of-contents is inserted into the document
