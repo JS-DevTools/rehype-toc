@@ -1,7 +1,7 @@
 import { Processor, Transformer } from "unified";
 import { Node } from "unist";
 import { createTOC } from "./create-toc";
-import { customizeTOC } from "./customize-toc";
+import { customizationHooks } from "./customization-hooks";
 import { findHeadings } from "./fiind-headings";
 import { findMainNode } from "./find-main-node";
 import { insertTOC } from "./insert-toc";
@@ -25,7 +25,7 @@ export function toc(this: Processor, opts?: Options): Transformer {
     let tocNode = createTOC(headings, options);
 
     // Allow the user to customize the table of contents before we add it to the page
-    let node = customizeTOC(tocNode, options);
+    let node = customizationHooks(tocNode, options);
 
     if (node) {
       // Add the table of contents to the <main> element

@@ -1,4 +1,5 @@
 import { Node } from "unist";
+import { CustomizationHook } from "./customization-hooks";
 import { HeadingTagName, HtmlElementNode, ListItemNode } from "./types";
 
 /**
@@ -49,6 +50,18 @@ export interface Options {
    * to the page.
    */
   customizeTOC?(toc: HtmlElementNode): Node | boolean | undefined;
+
+  /**
+   * Allows you to customize an item before it is added to the table of contents.
+   *
+   * @param tocItem - A HAST node tree containing an `<li>` and `<a>`
+   * @param heading - The original heading (e.g. `<h1>`, `<h2>`, etc.) that `tocItem` is a referene to
+   *
+   * @returns - Return the modified node, a new node to replace it with, or `undefined` to use the
+   * existing node. You can return a falsy value to prevent the item from being added to the
+   * table of contents.
+   */
+  customizeTOCItem?(tocItem: ListItemNode, heading: HtmlElementNode): Node | boolean | undefined;
 }
 
 /**
@@ -94,6 +107,7 @@ export class NormalizedOptions {
   public readonly headings: HeadingTagName[];
   public readonly cssClasses: Required<CssClasses>;
   public readonly customizeTOC?: CustomizationHook;
+  public readonly customizeTOCItem?: CustomizationHook;
 
   /**
    * Applies default values for any unspecified options
@@ -111,6 +125,7 @@ export class NormalizedOptions {
       link: cssClasses.link === undefined ? "toc-link" : cssClasses.link,
     };
     this.customizeTOC = options.customizeTOC;
+    this.customizeTOCItem = options.customizeTOCItem;
   }
 }
 

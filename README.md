@@ -231,7 +231,8 @@ Rehype Rehype TOC supports the following options:
 |`cssClasses.list`     |string              |toc-level              |The CSS class name for all `<ol>` elements in the table of contents, including the top-level one.
 |`cssClasses.listItem` |string              |toc-item               |The CSS class name for all `<li>` elements in the table of contents.
 |`cssClasses.link`     |string              |toc-link               |The CSS class name for all `<a>` elements in the table of contents.
-|`customizeTOC`        |function            |no-op                  |Allows you to customize the table of contents before it is added to the page.<br><br>The function receives the TOC node tree and can modify it in any way you want. Or you can return a new node tree to use instead. Or return `false` to prevent the the TOC from being added to the page.
+|`customizeTOC`        |function(toc)       |                       |Allows you to customize the table of contents before it is added to the page.<br><br>The function receives the TOC node tree and can modify it in any way you want. Or you can return a new node tree to use instead. Or return `false` to prevent the the TOC from being added to the page.
+|`customizeTOCItem`    |function(toc, heading)|                     |Allows you to customize each item in the table of contents before it is added to the page.<br><br>The function receives the TOC item's node tree and the heading node that it refers to. You can modify the nodes in any way you want. Or you can return a new node tree to use instead. Or return `false` to prevent the the TOC from being added to the page.
 
 
 

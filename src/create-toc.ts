@@ -123,6 +123,9 @@ function createListItem(heading: HeadingNode, options: NormalizedOptions): ListI
   return {
     type: "element",
     tagName: "li",
+    data: {
+      hookArgs: [heading],
+    },
     properties: {
       className: buildClass(options.cssClasses.listItem, heading.tagName),
     },
