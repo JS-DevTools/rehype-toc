@@ -19,13 +19,14 @@ export function createTOC(headings: HeadingNode[], options: NormalizedOptions): 
       type: "element",
       tagName: "nav",
       properties: {
-        class: options.cssClasses.toc || undefined,
+        className: options.cssClasses.toc || undefined,
       },
       children: [list],
     };
   }
   else {
-    list.properties.class = [options.cssClasses.toc, list.properties.class].filter(Boolean).join(" ") || undefined;
+    list.properties.className =
+      [options.cssClasses.toc, list.properties.className].filter(Boolean).join(" ") || undefined;
     return list;
   }
 }
@@ -123,14 +124,14 @@ function createListItem(heading: HeadingNode, options: NormalizedOptions): ListI
     type: "element",
     tagName: "li",
     properties: {
-      class: buildClass(options.cssClasses.listItem, heading.tagName),
+      className: buildClass(options.cssClasses.listItem, heading.tagName),
     },
     children: [
       {
         type: "element",
         tagName: "a",
         properties: {
-          class: buildClass(options.cssClasses.link, heading.tagName),
+          className: buildClass(options.cssClasses.link, heading.tagName),
           href: `#${heading.properties.id || ""}`,
         },
         children: [

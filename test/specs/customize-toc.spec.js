@@ -19,7 +19,7 @@ describe("options.customizeTOC", () => {
     {
       customizeTOC (toc) {
         toc.tagName = "div";
-        toc.properties.class = "my-custom-class";
+        toc.properties.className = "my-custom-class";
         toc.properties.id = "my-custom-id";
         toc.children[0].children[0].children.splice(1, 1);
       },
