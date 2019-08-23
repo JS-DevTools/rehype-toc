@@ -29,25 +29,5 @@
         "<node_internals>/**/*.js"
       ],
     },
-
-
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Run CLI",
-      "program": "${workspaceRoot}/bin/project-cli-name.js",
-      "args": [],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "outputCapture": "std",
-      "outFiles": [
-        "${workspaceFolder}/lib/**/*.js"
-      ],
-      "smartStep": true,
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
-    }
   ]
 }
