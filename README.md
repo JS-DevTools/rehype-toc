@@ -61,7 +61,7 @@ Here's the original HTML file. There are three levels of headings (`<h1>` - `<h3
 ```
 
 **example.js**<br>
-This script reads the `input.html` file above writes the results to `output.html` (shown below). The script uses [unified](https://unified.js.org/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-slug](https://github.com/rehypejs/rehype-slug), and [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify).
+This script reads the `input.html` file above writes the results to `output.html` (shown below). The script uses [unified](https://unifiedjs.com/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-slug](https://github.com/rehypejs/rehype-slug), and [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify).
 
 
 ```javascript
@@ -185,7 +185,7 @@ You can install `rehype-toc` via [npm](https://docs.npmjs.com/about-npm/).
 npm install rehype-toc
 ```
 
-You'll probably want to install [unified](https://unified.js.org/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify), and [rehype-slug](https://github.com/rehypejs/rehype-slug) as well.
+You'll probably want to install [unified](https://unifiedjs.com/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify), and [rehype-slug](https://github.com/rehypejs/rehype-slug) as well.
 
 ```bash
 npm install unified rehype-parse rehype-stringify rehype-slug
@@ -195,7 +195,7 @@ npm install unified rehype-parse rehype-stringify rehype-slug
 
 Usage
 --------------------------
-Using the Rehype TOC plugin requires an understanding of how to use Unified and Rehype. [Here is an excelleng guide](https://unified.js.org/using-unified.html) to learn the basics.
+Using the Rehype TOC plugin requires an understanding of how to use Unified and Rehype. [Here is an excelleng guide](https://unifiedjs.com/using-unified.html) to learn the basics.
 
 The Rehype TOC plugin works just like any other Rehype plugin. Pass it to [the `.use()` method](https://github.com/unifiedjs/unified#processoruseplugin-options), optionally with an [options object](#options).
 
@@ -220,7 +220,7 @@ unified().use(toc, {
 
 Options
 --------------------------
-Rehype Rehype TOC supports the following options:
+The Rehype TOC plugin supports the following options:
 
 |Option                |Type                |Default                |Description
 |:---------------------|:-------------------|:----------------------|:-----------------------------------------
