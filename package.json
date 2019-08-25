@@ -16,7 +16,7 @@
     "url": "https://jamesmessinger.com"
   },
   "license": "MIT",
-  "homepage": "https://jsdevtools.org/rehype-toc",
+  "homepage": "https://jstools.dev/rehype-toc",
   "repository": {
     "type": "git",
     "url": "https://github.com/JS-DevTools/rehype-toc.git"
