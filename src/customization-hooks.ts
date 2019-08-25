@@ -20,7 +20,7 @@ function customizeNodes(parent: HtmlElementNode, tagName: string, hook?: Customi
   if (!hook) return;
 
   for (let child of parent.children!) {
-    if (child.tagName === tagName) {
+    if ((child as HtmlElementNode).tagName === tagName) {
       let hookArgs = child.data && child.data.hookArgs as unknown[];
       if (hookArgs) {
         let newChild = customizationHook(hook, child, hookArgs);
