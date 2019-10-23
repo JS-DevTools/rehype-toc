@@ -16,12 +16,14 @@ os:
   # - osx
   - windows
 
+env:
+  - DEBUG="mocha:cli:mocha"
+
 before_script:
   - npm run lint
   - npm run build
 
 script:
-  - npm test
   - npm run coverage
 
 after_success:
