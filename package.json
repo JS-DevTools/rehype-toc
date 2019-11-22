@@ -43,27 +43,27 @@
     "node": ">=8"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.4",
+    "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.11.5",
+    "@types/node": "^12.12.11",
     "@types/unist": "^2.0.3",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.7",
-    "eslint": "^6.5.1",
+    "coveralls": "^3.0.8",
+    "eslint": "^6.7.0",
     "eslint-config-modular": "^7.0.1",
     "mocha": "^6.2.2",
     "npm-check": "^5.9.0",
     "nyc": "^14.1.1",
-    "rehype-parse": "^6.0.1",
+    "rehype-parse": "^6.0.2",
     "rehype-slug": "^2.0.3",
-    "rehype-stringify": "^6.0.0",
+    "rehype-stringify": "^6.0.1",
     "shx": "^0.3.2",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "tslint-modular": "^1.6.0",
-    "typescript": "^3.6.4",
-    "typescript-tslint-plugin": "^0.5.4",
-    "unified": "^8.4.1",
-    "version-bump-prompt": "^5.0.5"
+    "typescript": "^3.7.2",
+    "typescript-tslint-plugin": "^0.5.5",
+    "unified": "^8.4.2",
+    "version-bump-prompt": "^5.0.6"
   },
   "dependencies": {}
 }
