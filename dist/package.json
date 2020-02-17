@@ -1,0 +1,36 @@
+{
+  "name": "rehype-toc",
+  "version": "X.X.X",
+  "description": "A rehype plugin that adds a table of contents (TOC) to the page",
+  "keywords": [
+    "unified",
+    "rehype",
+    "plugin",
+    "rehype-plugin",
+    "table-of-contents",
+    "toc",
+    "html"
+  ],
+  "author": {
+    "name": "James Messinger",
+    "url": "https://jamesmessinger.com"
+  },
+  "license": "MIT",
+  "homepage": "https://jstools.dev/rehype-toc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JS-DevTools/rehype-toc.git"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "@jsdevtools/rehype-toc": "X.X.X"
+  }
+}
