@@ -1,4 +1,4 @@
-# Table of Contents plugin for rehype
+# Table of Contents plugin for Rehype
 A [rehype](https://github.com/rehypejs/rehype) plugin that adds a table of contents (TOC) to the page
 
 [![Cross-Platform Compatibility](https://jstools.dev/img/badges/os-badges.svg)](https://github.com/JS-DevTools/rehype-toc/blob/master/.github/workflows/CI-CD.yaml)
@@ -7,8 +7,8 @@ A [rehype](https://github.com/rehypejs/rehype) plugin that adds a table of conte
 [![Coverage Status](https://coveralls.io/repos/github/JS-DevTools/rehype-toc/badge.svg?branch=master)](https://coveralls.io/github/JS-DevTools/rehype-toc)
 [![Dependencies](https://david-dm.org/JS-DevTools/rehype-toc.svg)](https://david-dm.org/JS-DevTools/rehype-toc)
 
-[![npm](https://img.shields.io/npm/v/rehype-toc.svg)](https://www.npmjs.com/package/rehype-toc)
-[![License](https://img.shields.io/npm/l/rehype-toc.svg)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@jsdevtools/rehype-toc.svg)](https://www.npmjs.com/package/@jsdevtools/rehype-toc)
+[![License](https://img.shields.io/npm/l/@jsdevtools/rehype-toc.svg)](LICENSE)
 
 
 
@@ -68,7 +68,7 @@ This script reads the `input.html` file above writes the results to `output.html
 const unified = require("unified");
 const parse = require("rehype-parse");
 const slug = require("rehype-slug");
-const toc = require("rehype-toc");
+const toc = require("@jsdevtools/rehype-toc");
 const stringify = require("rehype-stringify");
 const fs = require("fs");
 
@@ -179,10 +179,10 @@ Here's the HTML that gets created by the above script. Notice that a table of co
 
 Installation
 --------------------------
-You can install `rehype-toc` via [npm](https://docs.npmjs.com/about-npm/).
+You can install Rehype TOC via [npm](https://docs.npmjs.com/about-npm/).
 
 ```bash
-npm install rehype-toc
+npm install @jsdevtools/rehype-toc
 ```
 
 You'll probably want to install [unified](https://unifiedjs.com/), [rehype-parse](https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse), [rehype-stringify](https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify), and [rehype-slug](https://github.com/rehypejs/rehype-slug) as well.
@@ -201,7 +201,7 @@ The Rehype TOC plugin works just like any other Rehype plugin. Pass it to [the `
 
 ```javascript
 const unified = require("unified");
-const toc = require("rehype-toc");
+const toc = require("@jsdevtools/rehype-toc");
 
 // Use the Rehype TOC plugin with its default options
 unified().use(toc);
@@ -259,7 +259,7 @@ To build the project locally on your computer:
 
 License
 --------------------------
-rehype-toc is 100% free and open-source, under the [MIT license](LICENSE). Use it however you want.
+Rehype TOC is 100% free and open-source, under the [MIT license](LICENSE). Use it however you want.
 
 
 
