@@ -17,7 +17,7 @@ export function customizationHooks(toc: HtmlElementNode, options: NormalizedOpti
 }
 
 function customizeNodes(parent: HtmlElementNode, tagName: string, hook?: CustomizationHook): void {
-  if (!hook) return;
+  if (!hook) { return; }
 
   for (let child of parent.children!) {
     if ((child as HtmlElementNode).tagName === tagName) {
