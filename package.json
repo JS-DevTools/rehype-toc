@@ -41,23 +41,23 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "@jsdevtools/eslint-config": "^1.0.4",
-    "@jsdevtools/version-bump-prompt": "^6.0.5",
-    "@types/chai": "^4.2.11",
-    "@types/mocha": "^8.0.0",
-    "@types/node": "^14.0.23",
+    "@jsdevtools/eslint-config": "^1.1.4",
+    "@jsdevtools/version-bump-prompt": "^6.1.0",
+    "@types/chai": "^4.2.14",
+    "@types/hast": "^2.3.1",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.20",
     "@types/unist": "^2.0.3",
     "chai": "^4.2.0",
     "eslint": "^7.4.0",
-    "mocha": "^8.0.1",
+    "mocha": "^8.2.1",
     "npm-check": "^5.9.2",
     "nyc": "^15.1.0",
     "rehype-parse": "^7.0.1",
-    "rehype-slug": "^3.0.0",
+    "rehype-slug": "^4.0.1",
     "rehype-stringify": "^8.0.0",
-    "shx": "^0.3.2",
+    "shx": "^0.3.3",
     "typescript": "^3.9.7",
-    "unified": "^9.0.0"
-  },
-  "dependencies": {}
+    "unified": "^9.2.0"
+  }
 }

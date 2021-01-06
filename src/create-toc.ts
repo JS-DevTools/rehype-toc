@@ -1,17 +1,18 @@
+import { Element } from "hast";
 import { getInnerText } from "./get-inner-text";
 import { buildClass, NormalizedOptions } from "./options";
-import { HeadingNode, HtmlElementNode, ListItemNode, ListNode } from "./types";
+import { Heading, ListItem, List } from "./types";
 
 interface TocLevel {
   depth: number;
   headingNumber: number;
-  list: ListNode;
+  list: List;
 }
 
 /**
  * Creates a `<nav>` and/or `<ol>` element containing the table of contents.
  */
-export function createTOC(headings: HeadingNode[], options: NormalizedOptions): HtmlElementNode {
+export function createTOC(headings: Heading[], options: NormalizedOptions): Element {
   let list = createTocList(headings, options);
 
   if (options.nav) {
@@ -25,6 +26,7 @@ export function createTOC(headings: HeadingNode[], options: NormalizedOptions): 
     };
   }
   else {
+    list.properties = list.properties || {};
     list.properties.className =
       [options.cssClasses.toc, list.properties.className].filter(Boolean).join(" ") || undefined;
     return list;
@@ -34,12 +36,12 @@ export function createTOC(headings: HeadingNode[], options: NormalizedOptions): 
 /**
  * Creates an `<ol>` element containing the table of contents.
  */
-function createTocList(headings: HeadingNode[], options: NormalizedOptions): HtmlElementNode {
+function createTocList(headings: Heading[], options: NormalizedOptions): Element {
   let levels: TocLevel[] = [];
   let currentLevel: TocLevel = {
     depth: 0,
     headingNumber: 0,
-    list: undefined as unknown as ListNode,
+    list: (undefined as unknown) as List,
   };
 
   for (let heading of headings) {
@@ -98,8 +100,8 @@ function createTocList(headings: HeadingNode[], options: NormalizedOptions): Htm
 /**
  * Creates an `<ol>` and `<li>` element for the given heading
  */
-function createList(heading: HeadingNode | undefined, depth: number, options: NormalizedOptions): ListNode {
-  let list: ListNode = {
+function createList(heading: Heading | undefined, depth: number, options: NormalizedOptions): List {
+  let list: List = {
     type: "element",
     tagName: "ol",
     properties: {
@@ -119,7 +121,7 @@ function createList(heading: HeadingNode | undefined, depth: number, options: No
 /**
  * Creates an `<li>` element for the given heading
  */
-function createListItem(heading: HeadingNode, options: NormalizedOptions): ListItemNode {
+function createListItem(heading: Heading, options: NormalizedOptions): ListItem {
   return {
     type: "element",
     tagName: "li",
@@ -135,7 +137,8 @@ function createListItem(heading: HeadingNode, options: NormalizedOptions): ListI
         tagName: "a",
         properties: {
           className: buildClass(options.cssClasses.link, heading.tagName),
-          href: `#${heading.properties.id || ""}`,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          href: `#${heading.properties?.id || ""}`,
         },
         children: [
           {

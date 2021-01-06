@@ -1,6 +1,5 @@
-import { Node } from "unist";
+import { Parent, Element } from "hast";
 import { NormalizedOptions } from "./options";
-import { HtmlElementNode } from "./types";
 
 /**
  * Inserts the table of contents at the specified position, relative to the given nodes.
@@ -8,29 +7,36 @@ import { HtmlElementNode } from "./types";
  * @param toc - The table of contents node to insert
  * @param target - The node to insert `toc` in/before/after
  * @param parent - The parent node of `target`. This is used for inserting `toc` before/after `target`
- * @param options - The `position` option determines where `toc` is inserted
+ * @param options - Options object
+ * @param options.position - The `position` option determines where `toc` is inserted
+ * @param options.replace - Set this to `true` will insert the `toc` node in place of `target` node
  */
-export function insertTOC(toc: Node, target: HtmlElementNode, parent: HtmlElementNode, { position }: NormalizedOptions): void {
-  let childIndex = parent.children!.indexOf(target);
+export function insertTOC(toc: Element, target: Element, parent: Parent, { position, replace }: NormalizedOptions & { replace: boolean }): void {
+  let childIndex = parent.children.indexOf(target);
 
-  switch (position) {
-    case "beforebegin":
-      parent.children!.splice(childIndex, 0, toc);
-      break;
+  if (replace) {
+    parent.children[childIndex] = toc;
+  }
+  else {
+    switch (position) {
+      case "beforebegin":
+        parent.children.splice(childIndex, 0, toc);
+        break;
 
-    case "afterbegin":
-      target.children!.unshift(toc);
-      break;
+      case "afterbegin":
+        target.children.unshift(toc);
+        break;
 
-    case "beforeend":
-      target.children!.push(toc);
-      break;
+      case "beforeend":
+        target.children.push(toc);
+        break;
 
-    case "afterend":
-      parent.children!.splice(childIndex + 1, 0, toc);
-      break;
+      case "afterend":
+        parent.children.splice(childIndex + 1, 0, toc);
+        break;
 
-    default:
-      throw new Error(`Invalid table-of-contents position: ${position}`);
+      default:
+        throw new Error(`Invalid table-of-contents position: ${position}`);
+    }
   }
 }
