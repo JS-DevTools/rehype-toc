@@ -32,9 +32,9 @@ export interface Options {
   /**
    * The optional placeholder string to replace with the table of contents.
    *
-   * Defaults to "{{TOC}}";
+   * Defaults to `undefined`;
    */
-  placeholder?: string;
+  placeholder?: string | undefined;
 
   /**
    * HTML heading elements to include in the table of contents.
@@ -113,7 +113,7 @@ export class NormalizedOptions {
   public readonly position: InsertPosition;
   public readonly headings: HeadingTagName[];
   public readonly cssClasses: Required<CssClasses>;
-  public readonly placeholder?: string;
+  public readonly placeholder?: string | undefined;
   public readonly customizeTOC?: CustomizationHook;
   public readonly customizeTOCItem?: CustomizationHook;
 
@@ -125,7 +125,7 @@ export class NormalizedOptions {
 
     this.nav = options.nav === undefined ? true : Boolean(options.nav);
     this.position = options.position || "afterbegin";
-    this.placeholder = options.placeholder || "{{TOC}}";
+    this.placeholder = options.placeholder;
     this.headings = options.headings || ["h1", "h2", "h3", "h4", "h5", "h6"];
     this.cssClasses = {
       toc: cssClasses.toc === undefined ? "toc" : cssClasses.toc,
