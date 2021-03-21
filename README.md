@@ -196,7 +196,7 @@ npm install unified rehype-parse rehype-stringify rehype-slug
 
 Usage
 --------------------------
-Using the Rehype TOC plugin requires an understanding of how to use Unified and Rehype. [Here is an excelleng guide](https://unifiedjs.com/using-unified.html) to learn the basics.
+Using the Rehype TOC plugin requires an understanding of how to use Unified and Rehype. [Here is an excelleng guide](https://unifiedjs.com/learn/guide/introduction-to-unified/) to learn the basics.
 
 The Rehype TOC plugin works just like any other Rehype plugin. Pass it to [the `.use()` method](https://github.com/unifiedjs/unified#processoruseplugin-options), optionally with an [options object](#options).
 
