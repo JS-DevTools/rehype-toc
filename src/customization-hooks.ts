@@ -1,27 +1,30 @@
-import { Node } from "unist";
+import { Element, Parent } from "hast";
 import { NormalizedOptions } from "./options";
-import { HtmlElementNode } from "./types";
+import { isElement } from "./type-guards";
 
 /**
  * A function that allows callers to customize the table of contents
  */
-export type CustomizationHook = (node: Node, ...args: unknown[]) => Node | boolean | undefined;
+export type CustomizationHook = (node: Element, ...args: unknown[]) => Element | boolean | undefined;
 
 /**
  * Allows the user to customize the table of contents before it gets added to the page.
  */
-export function customizationHooks(toc: HtmlElementNode, options: NormalizedOptions): Node | undefined {
+export function customizationHooks(toc: Element, options: NormalizedOptions): Element | undefined {
   let { customizeTOC, customizeTOCItem } = options;
   customizeNodes(toc, "li", customizeTOCItem);
   return customizationHook(customizeTOC, toc);
 }
 
-function customizeNodes(parent: HtmlElementNode, tagName: string, hook?: CustomizationHook): void {
+/**
+ * Recursively customize nodes.
+ */
+function customizeNodes(parent: Element, tagName: string, hook?: CustomizationHook): void {
   if (!hook) { return; }
 
-  for (let child of parent.children!) {
-    if ((child as HtmlElementNode).tagName === tagName) {
-      let hookArgs = child.data && child.data.hookArgs as unknown[];
+  for (let child of parent.children) {
+    if (isElement(child) && child.tagName === tagName) {
+      let hookArgs = child.data && (child.data.hookArgs as unknown[]);
       if (hookArgs) {
         let newChild = customizationHook(hook, child, hookArgs);
         replaceNode(parent, child, newChild);
@@ -29,7 +32,7 @@ function customizeNodes(parent: HtmlElementNode, tagName: string, hook?: Customi
     }
 
     if (child.children) {
-      customizeNodes(child as HtmlElementNode, tagName, hook);
+      customizeNodes(child as Element, tagName, hook);
     }
   }
 }
@@ -37,7 +40,7 @@ function customizeNodes(parent: HtmlElementNode, tagName: string, hook?: Customi
 /**
  * Allows callers to customize the table of contents.
  */
-function customizationHook(hook: CustomizationHook | undefined, node: Node, args: unknown[] = []): Node | undefined {
+function customizationHook(hook: CustomizationHook | undefined, node: Element, args: unknown[] = []): Element | undefined {
   if (!hook) {
     // No customization. Use the original node.
     return node;
@@ -63,18 +66,18 @@ function customizationHook(hook: CustomizationHook | undefined, node: Node, args
 /**
  * Replaces the specified child node with a different node
  */
-function replaceNode(parent: HtmlElementNode, oldChild: Node, newChild: Node | undefined): void {
+function replaceNode(parent: Parent, oldChild: Element, newChild: Element | undefined): void {
   // We only need to do a replacement if the nodes ar different
   if (newChild !== oldChild) {
-    let index = parent.children!.indexOf(oldChild);
+    let index = parent.children.indexOf(oldChild);
 
     if (newChild === undefined) {
       // Remove the old child
-      parent.children!.splice(index, 1);
+      parent.children.splice(index, 1);
     }
     else {
       // Replace the old child with the new child
-      parent.children!.splice(index, 1, newChild);
+      parent.children.splice(index, 1, newChild);
     }
   }
 }

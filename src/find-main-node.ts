@@ -1,22 +1,21 @@
-import { Node } from "unist";
-import { isHtmlElementNode } from "./type-guards";
-import { HtmlElementNode } from "./types";
+import { Parent, Element } from "hast";
+import { isElement, isParent } from "./type-guards";
 
 /**
  * Returns the `<main>` node, or the `<body>` node if there is no `<main>`.
  * The second node returned is the parent of the first node.
  */
-export function findMainNode(root: Node): [HtmlElementNode, HtmlElementNode] {
+export function findMainNode(root: Parent): [Element, Parent] {
   let [body, bodyParent] = findTagName(root, "body");
   let [main, mainParent] = findTagName(body || root, "main");
 
   if (main) {
-    return [main, mainParent || body || root as HtmlElementNode];
+    return [main, mainParent || body || (root as Element)];
   }
   else {
     return [
-      body || root as HtmlElementNode,
-      bodyParent || root as HtmlElementNode
+      body || (root as Element),
+      bodyParent || (root as Element)
     ];
   }
 }
@@ -25,17 +24,16 @@ export function findMainNode(root: Node): [HtmlElementNode, HtmlElementNode] {
 /**
  * Recursively crawls the HAST tree and finds the first element with the specified tag name.
  */
-function findTagName(node: Node, tagName: string): [HtmlElementNode | undefined, HtmlElementNode | undefined] {
-  if (isHtmlElementNode(node) && node.tagName === tagName) {
+function findTagName(node: Parent, tagName: string): [Element | undefined, Parent | undefined] {
+  if (isElement(node) && node.tagName === tagName) {
     return [node, undefined];
   }
 
-  if (node.children) {
-    let parent = node as HtmlElementNode;
-    for (let child of parent.children!) {
+  for (const child of node.children) {
+    if (isParent(child)) {
       let [found] = findTagName(child, tagName);
       if (found) {
-        return [found, parent];
+        return [found, node];
       }
     }
   }

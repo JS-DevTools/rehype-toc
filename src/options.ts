@@ -1,6 +1,6 @@
-import { Node } from "unist";
+import { Element } from "hast";
 import { CustomizationHook } from "./customization-hooks";
-import { HeadingTagName, HtmlElementNode, ListItemNode } from "./types";
+import { HeadingTagName, ListItem } from "./types";
 
 /**
  * The different positions at which the table of contents can be inserted,
@@ -30,6 +30,13 @@ export interface Options {
   position?: InsertPosition;
 
   /**
+   * The optional placeholder string to replace with the table of contents.
+   *
+   * Defaults to `undefined`;
+   */
+  placeholder?: string | undefined;
+
+  /**
    * HTML heading elements to include in the table of contents.
    *
    * Defaults to all headings ("h1" through "h6").
@@ -49,7 +56,7 @@ export interface Options {
    * existing node. You can return a falsy value to prevent the table of contents from being added
    * to the page.
    */
-  customizeTOC?(toc: HtmlElementNode): Node | boolean | undefined;
+  customizeTOC?(toc: Element): Element | boolean | undefined;
 
   /**
    * Allows you to customize an item before it is added to the table of contents.
@@ -61,7 +68,7 @@ export interface Options {
    * existing node. You can return a falsy value to prevent the item from being added to the
    * table of contents.
    */
-  customizeTOCItem?(tocItem: ListItemNode, heading: HtmlElementNode): Node | boolean | undefined;
+  customizeTOCItem?(tocItem: ListItem, heading: Element): Element | boolean | undefined;
 }
 
 /**
@@ -106,6 +113,7 @@ export class NormalizedOptions {
   public readonly position: InsertPosition;
   public readonly headings: HeadingTagName[];
   public readonly cssClasses: Required<CssClasses>;
+  public readonly placeholder?: string | undefined;
   public readonly customizeTOC?: CustomizationHook;
   public readonly customizeTOCItem?: CustomizationHook;
 
@@ -117,6 +125,7 @@ export class NormalizedOptions {
 
     this.nav = options.nav === undefined ? true : Boolean(options.nav);
     this.position = options.position || "afterbegin";
+    this.placeholder = options.placeholder;
     this.headings = options.headings || ["h1", "h2", "h3", "h4", "h5", "h6"];
     this.cssClasses = {
       toc: cssClasses.toc === undefined ? "toc" : cssClasses.toc,
