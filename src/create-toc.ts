@@ -138,7 +138,7 @@ function createListItem(heading: Heading, options: NormalizedOptions): ListItem 
         properties: {
           className: buildClass(options.cssClasses.link, heading.tagName),
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          href: `#${heading.properties?.id || ""}`,
+          href: `#${heading.properties ? (heading.properties.id || "") : ""}`,
         },
         children: [
           {
