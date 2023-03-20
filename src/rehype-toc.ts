@@ -2,10 +2,11 @@ import { Processor, Transformer } from "unified";
 import { Node } from "unist";
 import { createTOC } from "./create-toc";
 import { customizationHooks } from "./customization-hooks";
-import { findHeadings } from "./fiind-headings";
+import { findHeadings } from "./find-headings";
 import { findMainNode } from "./find-main-node";
 import { insertTOC } from "./insert-toc";
 import { NormalizedOptions, Options } from "./options";
+import { extractTOC } from "./extract-toc";
 
 /**
  * This is a Rehype plugin that adds a table of contents (TOC) that links to all
@@ -26,6 +27,11 @@ export function toc(this: Processor, opts?: Options): Transformer {
 
     // Allow the user to customize the table of contents before we add it to the page
     let node = customizationHooks(tocNode, options);
+
+    // Allow the user to extract the table of contents
+    if (options.extract) {
+      return extractTOC(node);
+    }
 
     if (node) {
       // Add the table of contents to the <main> element

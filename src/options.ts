@@ -62,6 +62,14 @@ export interface Options {
    * table of contents.
    */
   customizeTOCItem?(tocItem: ListItemNode, heading: HtmlElementNode): Node | boolean | undefined;
+
+  /**
+   * Determines whether the table of contents is extracted from the HTML of the page.
+   * When true, only the table of contents HTML is returned.
+   *
+   * Defaults to false.
+   */
+  extract?: boolean;
 }
 
 /**
@@ -108,6 +116,7 @@ export class NormalizedOptions {
   public readonly cssClasses: Required<CssClasses>;
   public readonly customizeTOC?: CustomizationHook;
   public readonly customizeTOCItem?: CustomizationHook;
+  public readonly extract?: boolean;
 
   /**
    * Applies default values for any unspecified options
@@ -126,6 +135,7 @@ export class NormalizedOptions {
     };
     this.customizeTOC = options.customizeTOC;
     this.customizeTOCItem = options.customizeTOCItem;
+    this.extract = options.extract === undefined ? false : Boolean(options.extract);
   }
 }
 
