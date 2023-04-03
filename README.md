@@ -234,6 +234,7 @@ The Rehype TOC plugin supports the following options:
 |`cssClasses.link`     |string              |toc-link               |The CSS class name for all `<a>` elements in the table of contents.
 |`customizeTOC`        |function(toc)       |                       |Allows you to customize the table of contents before it is added to the page.<br><br>The function receives the TOC node tree and can modify it in any way you want. Or you can return a new node tree to use instead. Or return `false` to prevent the the TOC from being added to the page.
 |`customizeTOCItem`    |function(toc, heading)|                     |Allows you to customize each item in the table of contents before it is added to the page.<br><br>The function receives the TOC item's node tree and the heading node that it refers to. You can modify the nodes in any way you want. Or you can return a new node tree to use instead. Or return `false` to prevent the the TOC from being added to the page.
+|`extract`             |boolean             |false                  |Determines whether the table of contents is extracted from the HTML of the page. When true, only the table of contents node is returned.<br><br>If `customizeTOC` or `customizeTOCItem` return falsy values, then an empty `div` node will be returned instead.
 
 
 
